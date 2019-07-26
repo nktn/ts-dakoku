@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"time"
-	"log"
+
 
 	"gopkg.in/guregu/null.v3"
 )
