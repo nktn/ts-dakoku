@@ -182,13 +182,13 @@ func (client *timeTableClient) UpdateTimeTable(timeTable *timeTable) (bool, erro
 	timeTable.IsHoliday = nil
 	b, err := json.Marshal(timeTable)
 	if err != nil {
-		log.Printf(err.Error())
+		log.Printf("えらー１")
 		return false, err
 	}
 	body, err := client.doRequest(http.MethodPost, bytes.NewBuffer(b))
 	fmt.Printf("%v %v %v\n", string(body), err, string(body) == `"OK"`)
 	if err != nil {
-		log.Printf(err.Error())
+		log.Printf("えらー2")
 		return false, err
 	}
 	return string(body) == `"OK"`, nil
@@ -198,12 +198,12 @@ func (client *timeTableClient) SetAttendance(attendance bool) (bool, error) {
 	data := map[string]bool{"attendance": attendance}
 	b, err := json.Marshal(data)
 	if err != nil {
-		log.Printf(err.Error())
+		log.Printf("えらー３")
 		return false, err
 	}
 	body, err := client.doRequest(http.MethodPut, bytes.NewBuffer(b))
 	if err != nil {
-		log.Printf(err.Error())
+		log.Printf("エラー4")
 		return false, err
 	}
 	return string(body) == `"OK"`, nil
