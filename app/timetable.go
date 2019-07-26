@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"time"
-
+	log "github.com/sirupsen/logrus"
 
 	"gopkg.in/guregu/null.v3"
 )
@@ -182,11 +182,13 @@ func (client *timeTableClient) UpdateTimeTable(timeTable *timeTable) (bool, erro
 	timeTable.IsHoliday = nil
 	b, err := json.Marshal(timeTable)
 	if err != nil {
+		log.Printf(err.Error())
 		return false, err
 	}
 	body, err := client.doRequest(http.MethodPost, bytes.NewBuffer(b))
 	fmt.Printf("%v %v %v\n", string(body), err, string(body) == `"OK"`)
 	if err != nil {
+		log.Printf(err.Error())
 		return false, err
 	}
 	return string(body) == `"OK"`, nil
