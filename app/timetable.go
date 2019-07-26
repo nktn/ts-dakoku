@@ -187,7 +187,7 @@ func (client *timeTableClient) UpdateTimeTable(timeTable *timeTable) (bool, erro
 	body, err := client.doRequest(http.MethodPost, bytes.NewBuffer(b))
 	fmt.Printf("%v %v %v\n", string(body), err, string(body) == `"OK"`)
 	if err != nil {
-		log.Printf(err.string)
+		log.Printf(err.Error())
 		return false, err
 	}
 	return string(body) == `"OK"`, nil
