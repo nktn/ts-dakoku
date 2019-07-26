@@ -206,7 +206,7 @@ func (app *App) handleActionCallback(w http.ResponseWriter, r *http.Request) {
 		b, _ := json.Marshal(params)
 		http.Post(responseURL, "application/json", bytes.NewBuffer(b))
 	}()
-
+	log.Printf("ほげほげ")
 	w.Header().Set("Content-Type", "text/plain")
 	w.Write([]byte("勤務表を更新中 :hourglass_flowing_sand:"))
 }
