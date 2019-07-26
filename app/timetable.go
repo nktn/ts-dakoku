@@ -182,6 +182,7 @@ func (client *timeTableClient) UpdateTimeTable(timeTable *timeTable) (bool, erro
 	timeTable.IsHoliday = nil
 	b, err := json.Marshal(timeTable)
 	if err != nil {
+		log.Printf(err.Error())
 		return false, err
 	}
 	body, err := client.doRequest(http.MethodPost, bytes.NewBuffer(b))
