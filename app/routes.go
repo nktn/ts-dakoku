@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"log"
+	log "github.com/sirupsen/logrus"
 	"golang.org/x/oauth2"
 
 	"github.com/gorilla/mux"
@@ -189,7 +189,7 @@ func (app *App) handleActionCallback(w http.ResponseWriter, r *http.Request) {
 	*/
 	client := ctx.createTimeTableClient()
 	timeTable, err := client.GetTimeTable()
-	log.Printf(err.Error())
+	log.Printf(timeTable)
 	go func() {
 		
 		params, responseURL, err := ctx.getActionCallback(&data)

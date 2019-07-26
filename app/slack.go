@@ -2,7 +2,7 @@ package app
 
 import (
 	"github.com/nlopes/slack"
-	"log"
+	log "github.com/sirupsen/logrus"
 )
 
 const (
