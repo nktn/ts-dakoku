@@ -169,6 +169,7 @@ func (app *App) handleActionCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	ctx.UserID = data.User.ID
+	/*
 	if data.CallbackID == callbackIDChannelSelect {
 		action := data.Actions[0]
 		channelID := ""
@@ -183,6 +184,7 @@ func (app *App) handleActionCallback(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(text))
 		return
 	}
+	*/
 	go func() {
 		params, responseURL, err := ctx.getActionCallback(&data)
 		if err != nil && params == nil && responseURL != "" {

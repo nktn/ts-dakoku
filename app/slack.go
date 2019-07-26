@@ -8,12 +8,12 @@ import (
 
 const (
 	actionTypeAttend           = "attend"
-	actionTypeRest             = "rest"
-	actionTypeUnrest           = "unrest"
+	//actionTypeRest             = "rest"
+	//actionTypeUnrest           = "unrest"
 	actionTypeLeave            = "leave"
-	actionTypeSelectChannel    = "select-channel"
-	actionTypeUnselectChannel  = "unselect-channel"
-	callbackIDChannelSelect    = "slack_channel_select_button"
+	//actionTypeSelectChannel    = "select-channel"
+	//actionTypeUnselectChannel  = "unselect-channel"
+	//callbackIDChannelSelect    = "slack_channel_select_button"
 	callbackIDAttendanceButton = "attendance_button"
 )
 
@@ -40,16 +40,16 @@ func (ctx *Context) getActionCallback(data *slack.AttachmentActionCallback) (*sl
 			attendance = 0
 			text = "退勤しました :house:"
 		}
-	case actionTypeRest:
-		{
-			timeTable.Rest(now)
-			text = "休憩を開始しました :coffee:"
-		}
-	case actionTypeUnrest:
-		{
-			timeTable.Unrest(now)
-			text = "休憩を終了しました :computer:"
-		}
+	//case actionTypeRest:
+	//	{
+	//		timeTable.Rest(now)
+	//		text = "休憩を開始しました :coffee:"
+	//	}
+	//case actionTypeUnrest:
+	//	{
+	//		timeTable.Unrest(now)
+	//		text = "休憩を終了しました :computer:"
+	//	}
 	case actionTypeAttend:
 		{
 			attendance = 1
@@ -128,6 +128,7 @@ func (ctx *Context) getAuthenticateSlackMessage(state State) (*slack.Msg, error)
 	}, nil
 }
 
+/*
 func (ctx *Context) getChannelSelectSlackMessage() (*slack.Msg, error) {
 	return &slack.Msg{
 		Attachments: []slack.Attachment{
@@ -154,6 +155,7 @@ func (ctx *Context) getChannelSelectSlackMessage() (*slack.Msg, error) {
 		},
 	}, nil
 }
+*/
 
 func (ctx *Context) getSlackMessage(command slack.SlashCommand) (*slack.Msg, error) {
 	text := command.Text
@@ -170,12 +172,12 @@ func (ctx *Context) getSlackMessage(command slack.SlashCommand) (*slack.Msg, err
 	if err != nil {
 		return ctx.getLoginSlackMessage(state)
 	}
-	if text == "channel" {
-		if ctx.getSlackAccessTokenForUser() == "" {
-			return ctx.getAuthenticateSlackMessage(state)
-		}
-		return ctx.getChannelSelectSlackMessage()
-	}
+	//if text == "channel" {
+	//	if ctx.getSlackAccessTokenForUser() == "" {
+	//		return ctx.getAuthenticateSlackMessage(state)
+	//	}
+	//	return ctx.getChannelSelectSlackMessage()
+	//}
 	if timeTable.IsLeaving() {
 		return &slack.Msg{
 			Text: "既に退勤済です。打刻修正は <https://" + ctx.TeamSpiritHost + "|TeamSpirit> で行なってください。",
@@ -186,37 +188,37 @@ func (ctx *Context) getSlackMessage(command slack.SlashCommand) (*slack.Msg, err
 			Text: "本日は休日です :sunny:",
 		}, nil
 	}
-	if timeTable.IsResting() {
-		return &slack.Msg{
-			Attachments: []slack.Attachment{
-				slack.Attachment{
-					CallbackID: callbackIDAttendanceButton,
-					Actions: []slack.AttachmentAction{
-						slack.AttachmentAction{
-							Name:  actionTypeUnrest,
-							Value: actionTypeUnrest,
-							Text:  "休憩を終了する",
-							Style: "default",
-							Type:  "button",
-						},
-					},
-				},
-			},
-		}, nil
-	}
+	//if timeTable.IsResting() {
+	//	return &slack.Msg{
+	//		Attachments: []slack.Attachment{
+	//			slack.Attachment{
+	//				CallbackID: callbackIDAttendanceButton,
+	//				Actions: []slack.AttachmentAction{
+	//					slack.AttachmentAction{
+	//						Name:  actionTypeUnrest,
+	//						Value: actionTypeUnrest,
+	//						Text:  "休憩を終了する",
+	//						Style: "default",
+	//						Type:  "button",
+	//					},
+	//				},
+	//			},
+	//		},
+	//	}, nil
+	//}
 	if timeTable.IsAttending() {
 		return &slack.Msg{
 			Attachments: []slack.Attachment{
 				slack.Attachment{
 					CallbackID: callbackIDAttendanceButton,
 					Actions: []slack.AttachmentAction{
-						slack.AttachmentAction{
-							Name:  actionTypeRest,
-							Value: actionTypeRest,
-							Text:  "休憩を開始する",
-							Style: "default",
-							Type:  "button",
-						},
+						//slack.AttachmentAction{
+						//	Name:  actionTypeRest,
+						//	Value: actionTypeRest,
+						//	Text:  "休憩を開始する",
+						//	Style: "default",
+						//	Type:  "button",
+						//},
 						slack.AttachmentAction{
 							Name:  actionTypeLeave,
 							Value: actionTypeLeave,
