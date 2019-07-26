@@ -1,11 +1,15 @@
 {
   "name": "TS-Dakoku",
   "description": "Slack のコマンドで TeamSpirit の打刻をします",
-  "keywords": ["work", "go", "teamspirit", "salesforce"],
+  "keywords": [
+    "work",
+    "go",
+    "teamspirit",
+    "salesforce"
+  ],
   "env": {
     "SALESFORCE_CLIENT_ID": {
-      "description":
-        "接続アプリケーションのコンシューマ鍵。SalesForce の設定より ビルド > 作成 > アプリケーション 画面より追加します"
+      "description": "接続アプリケーションのコンシューマ鍵。SalesForce の設定より ビルド > 作成 > アプリケーション 画面より追加します"
     },
     "SALESFORCE_CLIENT_SECRET": {
       "description": "接続アプリケーションのコンシューマ秘密鍵"
@@ -30,7 +34,7 @@
     }
   ],
   "image": "heroku/go:1.9.4",
-  "mount_dir": "src/github.com/ngs/ts-dakoku",
-  "website": "http://github.com/ngs/ts-dakoku",
-  "repository": "http://github.com/ngs/ts-dakoku"
+  "mount_dir": "src/github.com/nktn/ts-dakoku",
+  "website": "http://github.com/nktn/ts-dakoku",
+  "repository": "http://github.com/nktn/ts-dakoku"
 }
