@@ -187,6 +187,9 @@ func (app *App) handleActionCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	*/
+	client := ctx.createTimeTableClient()
+	timeTable, err := client.GetTimeTable()
+	log.Printf(timeTable)
 	go func() {
 		
 		params, responseURL, err := ctx.getActionCallback(&data)
