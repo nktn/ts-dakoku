@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/nlopes/slack"
+	"log"
 )
 
 const (
@@ -16,6 +17,7 @@ const (
 )
 
 func (ctx *Context) getActionCallback(data *slack.AttachmentActionCallback) (*slack.Msg, string, error) {
+	log.Printf("callback")
 	ctx.UserID = data.User.ID
 	client := ctx.createTimeTableClient()
 	timeTable, err := client.GetTimeTable()
