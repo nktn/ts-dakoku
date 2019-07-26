@@ -208,6 +208,6 @@ func (client *timeTableClient) SetAttendance(attendance bool) (bool, error) {
 		log.Printf(err.Error())
 		return false, err
 	}
-	log.Printf("OK?")
+	log.Printf(string(body))
 	return string(body) == `"OK"`, nil
 }
