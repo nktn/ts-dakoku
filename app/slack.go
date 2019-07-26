@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/nlopes/slack"
+	"log"
 )
 
 const (
@@ -68,6 +69,7 @@ func (ctx *Context) getActionCallback(data *slack.AttachmentActionCallback) (*sl
 		ok, err = client.UpdateTimeTable(timeTable)
 	}
 	if !ok || err != nil {
+		log.Printf(err.Error())
 		params.ResponseType = "ephemeral"
 		params.ReplaceOriginal = false
 		params.Text = "勤務表の更新に失敗しました :warning:"
