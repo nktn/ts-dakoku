@@ -188,6 +188,7 @@ func (app *App) handleActionCallback(w http.ResponseWriter, r *http.Request) {
 	}
 	*/
 	go func() {
+		log.Printf("go func!")
 		params, responseURL, err := ctx.getActionCallback(&data)
 		if err != nil {
 			log.Printf(err.Error())
