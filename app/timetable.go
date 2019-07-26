@@ -198,10 +198,12 @@ func (client *timeTableClient) SetAttendance(attendance bool) (bool, error) {
 	data := map[string]bool{"attendance": attendance}
 	b, err := json.Marshal(data)
 	if err != nil {
+		log.Printf(err.Error())
 		return false, err
 	}
 	body, err := client.doRequest(http.MethodPut, bytes.NewBuffer(b))
 	if err != nil {
+		log.Printf(err.Error())
 		return false, err
 	}
 	return string(body) == `"OK"`, nil
