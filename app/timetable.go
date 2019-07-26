@@ -180,7 +180,6 @@ func (client *timeTableClient) GetTimeTable() (*timeTable, error) {
 
 func (client *timeTableClient) UpdateTimeTable(timeTable *timeTable) (bool, error) {
 	timeTable.IsHoliday = nil
-	log.Printf(timeTable)
 	b, err := json.Marshal(timeTable)
 
 	if err != nil {
