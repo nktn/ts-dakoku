@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-
+	"log"
 	"golang.org/x/oauth2"
 
 	"github.com/gorilla/mux"
