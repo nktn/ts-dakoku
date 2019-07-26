@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/ngs/ts-dakoku",
+	"ImportPath": "github.com/nktn/ts-dakoku",
 	"GoVersion": "go1.9",
 	"GodepVersion": "v80",
 	"Packages": [
