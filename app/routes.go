@@ -188,7 +188,7 @@ func (app *App) handleActionCallback(w http.ResponseWriter, r *http.Request) {
 	}
 	*/
 	go func() {
-		log.Printf("go func!")
+		
 		params, responseURL, err := ctx.getActionCallback(&data)
 		if err != nil {
 			log.Printf(err.Error())
@@ -199,11 +199,12 @@ func (app *App) handleActionCallback(w http.ResponseWriter, r *http.Request) {
 		} else if err != nil {
 			fmt.Printf("Handle Action Callback Error: %+v\n", err.Error())
 		}
-		slackToken := ctx.getSlackAccessTokenForUser()
-		slackChannel := ctx.getSlackNotifyChannelForUser()
-		if slackToken != "" && slackChannel != "" {
-			slack.New(slackToken).PostMessage(slackChannel, params.Text, slack.PostMessageParameters{AsUser: true})
-		}
+		log.Printf("ここまできてる？")
+		//slackToken := ctx.getSlackAccessTokenForUser()
+		//slackChannel := ctx.getSlackNotifyChannelForUser()
+		//if slackToken != "" && slackChannel != "" {
+		//	slack.New(slackToken).PostMessage(slackChannel, params.Text, slack.PostMessageParameters{AsUser: true})
+		//}
 		b, _ := json.Marshal(params)
 		http.Post(responseURL, "application/json", bytes.NewBuffer(b))
 	}()
